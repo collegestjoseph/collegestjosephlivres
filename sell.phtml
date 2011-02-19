@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	{{ page_header }}
+    <h2>
+      Bonjour, {{ user }}.
+    </h2>
+    Ceci est votre page personnelle. Seul vous y avez acc&egrave;s.
+    <p>
+    Vous pouvez ajouter des ensembles de livres, les effacer ou les remettre en vente si votre acheteur se d&eacute;siste.
+    <div>
+      <h3>
+      Mettre un ensemble de livres &agrave; vendre
+      </h3>
+      <blockquote>
+        <form action="/newbook" method="post">
+          <div>
+            Description:<br>
+            <textarea name="description" rows="10" cols="80">
+Livre d'anglais
+Livre de Maths I
+Livre de Maths II
+Livre d'histoire
+etc...
+            </textarea>
+          </div>
+          <div>
+            Secondaire: 
+              <input type="radio" name="grade" value="1" CHECKED /> I &nbsp;
+              <input type="radio" name="grade" value="2" /> II &nbsp;
+              <input type="radio" name="grade" value="3" /> III &nbsp;
+              <input type="radio" name="grade" value="4" /> IV &nbsp;
+              <input type="radio" name="grade" value="5" /> V &nbsp;
+          </div>
+          <div>
+            Prix pour l'ensemble: <textarea name="price" rows="1" cols="5"></textarea> $
+            <br>
+            Cochez ici <input type="checkbox" name="can_separate" value="true" /> si ces livres peuvent &ecirc;tre vendus s&eacute;par&eacute;ment<br />
+          </div>
+          <div><input type="submit" value="Ajouter"></div>
+        </form>
+      </blockquote>
+    </div>
+
+    <h3>
+        Mes livres en vente:
+    </h3>
+    {% if books %}
+      <ol>
+      {% for book in books %}
+        <li>
+          Secondaire: {{ book.grade|escape }} <br>
+          Prix: {{ book.price|escape }} $ 
+          {% if book.can_separate %}
+            (Peuvent &ecirc;tre vendus &agrave; l'unit&eacute;)
+          {% else %}
+            (Vendus comme un <b>tout</b>)
+          {% endif %}
+          {% if book.buyer %}
+            <br>
+            Demand&eacute;s par: {{ book.buyer }}
+          {% endif %}
+          <br>
+          <blockquote><pre>{{ book.description|escape }}</pre></blockquote>
+          <br>
+          <form action="/erasebook" method="post">
+            <div>
+              <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+            </div>
+            <div><input type="submit" value="Effacer ces livres"></div>
+          </form>
+          {% if book.buyer %}
+            <form action="/deletebuyer" method="post">
+              <div>
+                <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+              </div>
+              <div><input type="submit" value="Remettre ces livres en vente"></div>
+            </form>
+          {% endif %}
+          <p>
+        </li>
+      {% endfor %}
+      </ol>
+    {% else %}
+      <ul>
+        <li><strong>Vous n'avez pas encore de livres &agrave; vendre.</strong></li>
+      </ul>
+    {% endif %}
+
+		{{ page_footer }}
+  </body>
+</html>

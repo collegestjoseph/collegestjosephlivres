@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	{{ page_header }}
+    <h3>
+      Liste des livres offerts
+    </h3>
+    Cliquez sur "Contacter le propri&eacute;taire" si vous d&eacute;sirez entrer en contact avec le propri&eacute;taire des livres. <br>
+    Un courriel sera envoy&eacute; aux deux personnes, et les livres seront temporairement retir&eacute;s de la page des recherches.
+    <p>
+    <div>
+    {% if books %}
+      <h4>Ensembles de livres offerts</h4>
+      <ol>
+      {% for book in books %}
+        <li>
+            Secondaire: {{ book.grade|escape }} <br>
+            Prix: {{ book.price|escape }} $<br>
+            {% if book.can_separate %}
+              (Peuvent &ecirc;tre vendus &agrave; l'unit&eacute;)
+            {% else %}
+              (Vendus comme un <b>tout</b>)
+            {% endif %}
+            <blockquote><pre>{{ book.description|escape }}</pre></blockquote>
+            {% ifequal book.owner user %}
+              <i>Vous &ecirc;tes le propri&eacute;taire de ces livres.</i><p>
+            {% else %}
+              <form action="/contactowner" method="post">
+                <div>
+                  <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+                </div>
+                <div><input type="submit" value="Contacter le propri&eacute;taire"></div>
+              </form>
+              {% if debug %}
+              <i>debug</i> vendus par: {{ book.owner }}<p>
+              {% endif %}
+            {% endifequal %}
+        </li>
+      {% endfor %}
+      </ol>
+    {% else %}
+      <h4>Aucun ensemble de livres n'est pr&eacute;sentement disponible</h4>
+    {% endif %}
+    </div>
+
+		{{ page_footer }}
+  </body>
+</html>

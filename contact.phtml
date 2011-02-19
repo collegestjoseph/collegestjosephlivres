@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	{{ page_header }}
+    <h3>
+      Contacter le propri&eacute;taire
+    </h3>
+
+    <form action="/buybooks" method="post">
+      <div>
+        <input type="hidden" name="uuid" value="{{ uuid }}" />
+      </div>
+      <div>
+        <textarea name="message_body" rows="10" cols="80">
+        {{ default_message }}
+        </textarea>
+      </div>
+      <div><input type="submit" value="Envoyer le message"></div>
+    </form>
+
+		{{ page_footer }}
+  </body>
+</html>

@@ -1,0 +1,38 @@
+body {
+  font-family: Helvetica, Verdana, sans-serif;
+  background-color: #DDDDDD;
+}
+
+li {
+	display: inline;
+	list-style-type: none;
+}
+
+ul {
+	width: 100%;
+}
+
+#how-to-use div {
+	float:left;
+	width: 49%;
+}
+
+.connect {
+	float:right;
+	min-width: 180px;
+}
+
+.description {
+	padding-left: 1px;
+	padding-right: 1px;
+	text-align: center;
+	vertical-align: top;
+}
+.home{
+	background-image: url("../images/home.png");
+	background-position: center;
+	height: 100px;
+}
+.menu {
+	min-width: 200px;
+}

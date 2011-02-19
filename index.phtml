@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  	{{ page_header }}
+    <h3>
+      Bonjour{% if user %}, {{ user }}{% endif %}!
+    </h3>
+    Ce site web permet aux parents et &eacute;l&egrave;ves du Coll&egrave;ge Saint-Joseph de Hull d'entrer en contact pour vendre ou acheter les livres usag&eacute;s pour le Secondaire I &agrave; V.
+    <p>
+    Pour des raisons de s&eacute;curit&eacute;, vous devez vous inscrire avec votre compte Google.<br>
+    Si vous n'avez pas de compte Google, <a href="https://www.google.com/accounts"> cr&eacute;&eacute;z-en un ici</a>. C'est gratuit.
+    <h4>
+      Utilisation
+    </h4>
+    Cliquez sur <a href="/recherche">Recherche</a> pour obtenir la liste de tous les livres d'occasion offerts sur le site.
+    <p>
+    Cliquez sur <a href="/vendre">Mes Livres</a> pour g&eacute;rer la liste de vos livres &agrave; vendre.
+
+		{{ page_footer }}
+  </body>
+</html>
