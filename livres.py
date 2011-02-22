@@ -33,7 +33,7 @@ Envoyé par http://livres-stjoseph.appspot.com/
 class BookSet(db.Model):
     owner = db.UserProperty()
     buyer = db.StringProperty()
-    description = db.StringProperty(multiline=True)
+    description = db.TextProperty()
     can_separate = db.BooleanProperty()
     grade = db.IntegerProperty()
     price = db.IntegerProperty()
