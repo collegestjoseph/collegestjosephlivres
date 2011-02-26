@@ -10,7 +10,7 @@
     <h3>
       Liste des livres offerts
     </h3>
-    Cliquez sur "Contacter le propri&eacute;taire" si vous d&eacute;sirez entrer en contact avec le propri&eacute;taire des livres. <br>
+    Cliquez sur "Contacter le vendeur" si vous d&eacute;sirez entrer en contact avec le propri&eacute;taire des livres. <br>
     Un courriel sera envoy&eacute; aux deux personnes, et les livres seront temporairement retir&eacute;s de la page des recherches.
     <p>
     <div>
@@ -34,7 +34,7 @@
                 <div>
                   <input type="hidden" name="uuid" value="{{ book.uuid }}" />
                 </div>
-                <div><input type="submit" value="Contacter le propri&eacute;taire"></div>
+                <div><input type="submit" value="Contacter le vendeur"></div>
               </form>
               {% if debug %}
               <i>debug</i> vendus par: {{ book.owner }}<p>
