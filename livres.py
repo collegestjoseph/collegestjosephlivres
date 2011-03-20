@@ -44,6 +44,14 @@ class SearchPage(webapp.RequestHandler):
     def get(self):
         books_query = BookSet.all().order('-date')
         books = books_query.filter('buyer =', None)
+        if self.request.get('sec'):
+            sec = int(self.request.get('sec'))
+            if sec > 5:
+                sec = 5
+            if sec < 1:
+                sec = 1
+            logging.info("sec requested: " + str(sec))
+            books = books_query.filter('buyer =', None).filter('grade =', sec)
 
         path = os.path.join(os.path.dirname(__file__), 'search.phtml')
 
