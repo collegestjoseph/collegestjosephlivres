@@ -44,6 +44,7 @@ class SearchPage(webapp.RequestHandler):
     def get(self):
         books_query = BookSet.all().order('-date')
         books = books_query.filter('buyer =', None)
+        sec = 0
         if self.request.get('sec'):
             try:
                 sec = int(self.request.get('sec'))
@@ -73,6 +74,7 @@ class SearchPage(webapp.RequestHandler):
 
         template_values = {
             'books': books,
+            'sec': str(sec),
             'user': users.get_current_user(),
             'url': url,
             'url_linktext': url_linktext,

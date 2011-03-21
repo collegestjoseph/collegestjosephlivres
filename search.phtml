@@ -13,7 +13,44 @@
     Cliquez sur "Contacter le vendeur" si vous d&eacute;sirez entrer en contact avec le propri&eacute;taire des livres. <br>
     Un courriel sera envoy&eacute; aux deux personnes, et les livres seront temporairement retir&eacute;s de la page des recherches.
     <p>
-    <div>
+    <ul id="tabmenu">
+      <li>
+        {% ifequal sec '1' %}
+          <a class="active" href="recherche?sec=1">Secondaire I</a>
+        {% else %}
+          <a href="recherche?sec=1">Secondaire I</a>
+        {% endifequal %}
+      </li>
+      <li>
+        {% ifequal sec '2' %}
+          <a class="active" href="recherche?sec=2">Secondaire II</a>
+        {% else %}
+          <a href="recherche?sec=2">Secondaire II</a>
+        {% endifequal %}
+      </li>
+      <li>
+        {% ifequal sec '3' %}
+          <a class="active" href="recherche?sec=3">Secondaire III</a>
+        {% else %}
+          <a href="recherche?sec=3">Secondaire III</a>
+        {% endifequal %}
+      </li>
+      <li>
+        {% ifequal sec '4' %}
+          <a class="active" href="recherche?sec=4">Secondaire IV</a>
+        {% else %}
+          <a href="recherche?sec=4">Secondaire IV</a>
+        {% endifequal %}
+      </li>
+      <li>
+        {% ifequal sec '5' %}
+          <a class="active" href="recherche?sec=5">Secondaire V</a>
+        {% else %}
+          <a href="recherche?sec=5">Secondaire V</a>
+        {% endifequal %}
+      </li>
+    </ul>
+    <div id="content">
     {% if books %}
       <h4>Ensembles de livres offerts</h4>
       <ol>

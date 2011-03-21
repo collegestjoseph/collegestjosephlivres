@@ -13,6 +13,21 @@ indexes:
 - kind: BookSet
   properties:
   - name: buyer
+  - name: buyer
+  - name: grade
+  - name: date
+    direction: desc
+
+- kind: BookSet
+  properties:
+  - name: buyer
+  - name: date
+    direction: desc
+
+- kind: BookSet
+  properties:
+  - name: buyer
+  - name: grade
   - name: date
     direction: desc
 
