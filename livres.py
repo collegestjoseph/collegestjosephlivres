@@ -243,7 +243,8 @@ class NewBook(webapp.RequestHandler):
             if self.request.get('can_separate'):
                 books.can_separate = True
             try:
-                books.price = int(self.request.get('price'))
+                price_str = self.request.get('price').replace(",", ".")
+                books.price = int(round(float(price_str)))
             except:
                 books.price = 100
             try:
