@@ -10,5 +10,8 @@ handlers:
 - url: /images
   static_dir: images
 
+- url: /listes
+  static_dir: listes
+
 - url: /.*
   script: livres.py

@@ -127,6 +127,33 @@ class MyBooksPage(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
+class ListsPage(webapp.RequestHandler):
+    def get(self):
+
+        path = os.path.join(os.path.dirname(__file__), 'lists.phtml')
+
+        if users.get_current_user():
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'D&eacute;connexion'
+        else:
+            url = users.create_login_url(self.request.uri)
+            url_linktext = 'Connexion'
+            path = os.path.join(os.path.dirname(__file__), 'login.phtml')
+
+        template_values = {
+            'user': users.get_current_user(),
+            'url': url,
+            'url_linktext': url_linktext,
+            'page_header': template.render('header.html', {
+                    'user': users.get_current_user(),
+                    'url': url,
+                    'url_linktext': url_linktext,
+                }),
+            'page_footer': template.render('footer.html', {}),
+            }
+
+        self.response.out.write(template.render(path, template_values))
+
 class MainPage(webapp.RequestHandler):
     def get(self):
 
@@ -260,6 +287,7 @@ class NewBook(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/recherche', SearchPage),
+                                      ('/listes', ListsPage),
                                       ('/vendre', MyBooksPage),
                                       ('/erasebook', EraseBook),
                                       ('/deletebuyer', DeleteBuyer),
