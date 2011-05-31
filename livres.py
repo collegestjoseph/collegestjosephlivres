@@ -185,9 +185,10 @@ class BuyBooks(webapp.RequestHandler):
             book.buyer = users.get_current_user().email()
             book.put()
 
-            message = mail.EmailMessage(sender=book.buyer)
+            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
             message.subject = "Vente de livres St-Joseph, Secondaire %d" % book.grade
             message.to = book.owner.email()
+            message.reply_to = book.buyer
             logging.info("message body: " + self.request.get('message_body'))
             message.body = self.request.get('message_body')
             message.cc = book.buyer
