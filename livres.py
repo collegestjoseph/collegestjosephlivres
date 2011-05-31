@@ -11,7 +11,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from google.appengine.api import mail
 
-gDebug = True
+gDebug = False
 gDefaultMessage = """
 Bonjour,
 
