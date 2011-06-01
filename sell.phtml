@@ -13,6 +13,52 @@
     Ceci est votre page personnelle. Seul vous y avez acc&egrave;s.
     <p>
     Vous pouvez ajouter des ensembles de livres, les effacer ou les remettre en vente si votre acheteur se d&eacute;siste.
+
+    <h3>
+        Mes livres en vente:
+    </h3>
+    {% if books %}
+      <ol>
+      {% for book in books %}
+        <li>
+          Secondaire: {{ book.grade|escape }} <br>
+          Prix: {{ book.price|escape }} $ 
+          {% if book.can_separate %}
+            (Peuvent &ecirc;tre vendus &agrave; l'unit&eacute;)
+          {% else %}
+            (Vendus comme un <b>tout</b>)
+          {% endif %}
+          {% if book.buyer %}
+            <br>
+            Demand&eacute;s par: {{ book.buyer }}
+          {% endif %}
+          <br>
+          <blockquote><pre>{{ book.description|escape }}</pre></blockquote>
+          <br>
+          <form action="/erasebook" method="post">
+            <div>
+              <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+            </div>
+            <div><input type="submit" value="Effacer ces livres"></div>
+          </form>
+          {% if book.buyer %}
+            <form action="/deletebuyer" method="post">
+              <div>
+                <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+              </div>
+              <div><input type="submit" value="Remettre ces livres en vente"></div>
+            </form>
+          {% endif %}
+          <p>
+        </li>
+      {% endfor %}
+      </ol>
+    {% else %}
+      <ul>
+        <li><strong>Vous n'avez pas encore de livres &agrave; vendre.</strong></li>
+      </ul>
+    {% endif %}
+
     <div>
       <h3>
       Mettre un ensemble de livres &agrave; vendre
@@ -59,51 +105,6 @@ etc...
         </form>
       </blockquote>
     </div>
-
-    <h3>
-        Mes livres en vente:
-    </h3>
-    {% if books %}
-      <ol>
-      {% for book in books %}
-        <li>
-          Secondaire: {{ book.grade|escape }} <br>
-          Prix: {{ book.price|escape }} $ 
-          {% if book.can_separate %}
-            (Peuvent &ecirc;tre vendus &agrave; l'unit&eacute;)
-          {% else %}
-            (Vendus comme un <b>tout</b>)
-          {% endif %}
-          {% if book.buyer %}
-            <br>
-            Demand&eacute;s par: {{ book.buyer }}
-          {% endif %}
-          <br>
-          <blockquote><pre>{{ book.description|escape }}</pre></blockquote>
-          <br>
-          <form action="/erasebook" method="post">
-            <div>
-              <input type="hidden" name="uuid" value="{{ book.uuid }}" />
-            </div>
-            <div><input type="submit" value="Effacer ces livres"></div>
-          </form>
-          {% if book.buyer %}
-            <form action="/deletebuyer" method="post">
-              <div>
-                <input type="hidden" name="uuid" value="{{ book.uuid }}" />
-              </div>
-              <div><input type="submit" value="Remettre ces livres en vente"></div>
-            </form>
-          {% endif %}
-          <p>
-        </li>
-      {% endfor %}
-      </ol>
-    {% else %}
-      <ul>
-        <li><strong>Vous n'avez pas encore de livres &agrave; vendre.</strong></li>
-      </ul>
-    {% endif %}
 
 		{{ page_footer }}
   </body>
