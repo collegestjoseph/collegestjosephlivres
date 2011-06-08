@@ -1,48 +1,48 @@
-	<table width="100%">
-		<tr>
-			<td width="10%" align="center" rowspan="2">
-				<a href="/"><img src="/images/logo.png" alt="Logo Coll&egrave;ge St-Joseph"></a>
-			</td>
-			<td width="10%" align="center">
-				<a href="/"><img src="/images/home.png" alt="Accueil"></a>
-			</td>
-			<td width="10%" align="center">
-				<a href="/recherche?sec=1"><img src="/images/search.png" alt="Recherche"></a>
-			</td>
-			<td width="10%" align="center">
-				<a href="/vendre"><img src="/images/book.png" alt="Mes Livres"></a>
-			</td>
-			<td width="10%" align="center">
-				<a href="/listes"><img src="/images/paperclip.png" alt="Listes Officielles"></a>
-			</td>
-			<td align="center">
-			</td>
-			<td width="10%" align="center">
-				<a href="{{ url }}"><img src="/images/user.png" alt="Utilisateur"></a>
-			</td>
-		</tr>
-		<tr width="100%">
-			<td width="10%" align="center" valign="top">
-				<a href="/">Accueil</a
-			</td>
-			<td width="10%" align="center" valign="top">
-				<a href="/recherche?sec=1">Recherche</a>
-			</td>
-			<td width="10%" align="center" valign="top">
-				<a href="/vendre">Mes Livres</a>
-			</td>
-			<td width="10%" align="center" valign="top">
-				<a href="/listes">Listes Officielles</a>
-			</td>
-			<td align="center">
-			</td>
-			<td width="10%" align="center" valign="top">
-		    {% if user %}
-		      {{ user }}<br/>
-		    {% endif %}
-				<a href="{{ url }}">{{ url_linktext }}</a>
-			</td>
-		</tr>
-	</table>
+  <table width="100%">
+    <tr>
+      <td width="10%" align="center" rowspan="2">
+        <a href="/"><img src="/images/logo.png" alt="Logo Coll&egrave;ge St-Joseph"></a>
+      </td>
+      <td width="10%" align="center">
+        <a href="/"><img src="/images/home.png" alt="Accueil"></a>
+      </td>
+      <td width="10%" align="center">
+        <a href="/recherche?sec=1"><img src="/images/search.png" alt="Recherche"></a>
+      </td>
+      <td width="10%" align="center">
+        <a href="/vendre"><img src="/images/book.png" alt="Mes Livres"></a>
+      </td>
+      <td width="10%" align="center">
+        <a href="/listes"><img src="/images/paperclip.png" alt="Listes Officielles"></a>
+      </td>
+      <td align="center">
+      </td>
+      <td width="10%" align="center">
+        <a href="{{ url }}"><img src="/images/user.png" alt="Utilisateur"></a>
+      </td>
+    </tr>
+    <tr width="100%">
+      <td width="10%" align="center" valign="top">
+        <a href="/">Accueil</a
+      </td>
+      <td width="10%" align="center" valign="top">
+        <a href="/recherche?sec=1">Recherche</a>
+      </td>
+      <td width="10%" align="center" valign="top">
+        <a href="/vendre">Mes Livres</a>
+      </td>
+      <td width="10%" align="center" valign="top">
+        <a href="/listes">Listes Officielles</a>
+      </td>
+      <td align="center">
+      </td>
+      <td width="10%" align="center" valign="top">
+        {% if user %}
+          {{ user }}<br/>
+        {% endif %}
+        <a href="{{ url }}">{{ url_linktext }}</a>
+      </td>
+    </tr>
+  </table>
 
     
