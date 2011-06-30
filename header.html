@@ -40,6 +40,9 @@
         {% if user %}
           {{ user }}<br/>
         {% endif %}
+        {% if admin %}
+          <em>Administrateur</em><br/>
+        {% endif %}
         <a href="{{ url }}">{{ url_linktext }}</a>
       </td>
     </tr>

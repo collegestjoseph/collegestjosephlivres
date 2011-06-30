@@ -9,6 +9,10 @@
     {{ page_header }}
     <h3>
       Bonjour{% if user %}, {{ user }}{% endif %}!
+      {% if admin %}
+      <br>
+      <em>Vous &ecirc;tes administrateur</em>
+      {% endif %}
     </h3>
     <h4>
       Utilisation

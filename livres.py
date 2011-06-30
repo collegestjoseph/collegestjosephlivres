@@ -80,6 +80,7 @@ class SearchPage(webapp.RequestHandler):
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
             				'user': users.get_current_user(),
+                    'admin': users.is_current_user_admin(),
             				'url': url,
 				            'url_linktext': url_linktext,
             		}),
@@ -114,11 +115,13 @@ class MyBooksPage(webapp.RequestHandler):
         template_values = {
             'books': books,
             'user': user,
+            'admin': users.is_current_user_admin(),
             'url': url,
             'url_linktext': url_linktext,
             'user': user,
             'page_header': template.render('header.html', {
             				'user': users.get_current_user(),
+                    'admin': users.is_current_user_admin(),
             				'url': url,
 				            'url_linktext': url_linktext,
             		}),
@@ -142,10 +145,12 @@ class ListsPage(webapp.RequestHandler):
 
         template_values = {
             'user': users.get_current_user(),
+            'admin': users.is_current_user_admin(),
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
                     'user': users.get_current_user(),
+                    'admin': users.is_current_user_admin(),
                     'url': url,
                     'url_linktext': url_linktext,
                 }),
@@ -169,10 +174,12 @@ class MainPage(webapp.RequestHandler):
 
         template_values = {
             'user': users.get_current_user(),
+            'admin': users.is_current_user_admin(),
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
             				'user': users.get_current_user(),
+                    'admin': users.is_current_user_admin(),
             				'url': url,
 				            'url_linktext': url_linktext,
             		}),
@@ -246,10 +253,12 @@ class ContactOwner(webapp.RequestHandler):
             'uuid': book[0].uuid,
             'default_message': gDefaultMessage % (users.get_current_user().nickname(), description),
             'user': users.get_current_user(),
+            'admin': users.is_current_user_admin(),
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
             				'user': users.get_current_user(),
+                    'admin': users.is_current_user_admin(),
             				'url': url,
 				            'url_linktext': url_linktext,
             		}),
