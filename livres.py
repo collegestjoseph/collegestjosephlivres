@@ -79,11 +79,11 @@ class SearchPage(webapp.RequestHandler):
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
-            				'user': users.get_current_user(),
+                    'user': users.get_current_user(),
                     'admin': users.is_current_user_admin(),
-            				'url': url,
-				            'url_linktext': url_linktext,
-            		}),
+                    'url': url,
+                    'url_linktext': url_linktext,
+                }),
             'page_footer': template.render('footer.html', {}),
             'debug': gDebug,
             }
@@ -120,11 +120,11 @@ class MyBooksPage(webapp.RequestHandler):
             'url_linktext': url_linktext,
             'user': user,
             'page_header': template.render('header.html', {
-            				'user': users.get_current_user(),
+                    'user': users.get_current_user(),
                     'admin': users.is_current_user_admin(),
-            				'url': url,
-				            'url_linktext': url_linktext,
-            		}),
+                    'url': url,
+                    'url_linktext': url_linktext,
+                }),
             'page_footer': template.render('footer.html', {}),
             }
 
@@ -178,11 +178,11 @@ class MainPage(webapp.RequestHandler):
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
-            				'user': users.get_current_user(),
+                    'user': users.get_current_user(),
                     'admin': users.is_current_user_admin(),
-            				'url': url,
-				            'url_linktext': url_linktext,
-            		}),
+                    'url': url,
+                    'url_linktext': url_linktext,
+                }),
             'page_footer': template.render('footer.html', {}),
             }
 
@@ -257,11 +257,11 @@ class ContactOwner(webapp.RequestHandler):
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
-            				'user': users.get_current_user(),
+                    'user': users.get_current_user(),
                     'admin': users.is_current_user_admin(),
-            				'url': url,
-				            'url_linktext': url_linktext,
-            		}),
+                    'url': url,
+                    'url_linktext': url_linktext,
+                }),
             'page_footer': template.render('footer.html', {}),
             'debug': gDebug,
             }
