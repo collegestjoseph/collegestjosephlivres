@@ -79,6 +79,14 @@
               <i>debug</i> vendus par: {{ book.owner }}<p>
               {% endif %}
             {% endifequal %}
+            {% if admin %}
+              <form action="/deletebooks" method="post">
+                <div>
+                  <input type="hidden" name="uuid" value="{{ book.uuid }}" />
+                </div>
+                <div><input type="submit" value="Effacer ces livres"></div>
+              </form>
+            {% endif %}
         </li>
         <hr>
       {% endfor %}

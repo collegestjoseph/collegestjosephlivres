@@ -29,6 +29,29 @@ Bien à vous,
 Envoyé par http://livres-stjoseph.appspot.com/
 
 """
+gDeleteMessage = """
+Bonjour,
+
+La direction du Collège demande que ce site ne soit utilisé que pour les livres, et non pour les vêtements et autres accessoires.
+
+Par conséquent, nous avons retiré votre annonce.
+
+Si vous avez des questions, veuillez contacter Mme Roger à l'adresse <nf.roger@collegestjoseph.ca>
+
+Bien à vous,
+Livres St-Joseph
+
+---
+===============
+Annonce retirée
+===============
+%s
+
+---
+
+Envoyé par http://livres-stjoseph.appspot.com/
+
+"""
 
 class BookSet(db.Model):
     owner = db.UserProperty()
@@ -76,6 +99,7 @@ class SearchPage(webapp.RequestHandler):
             'books': books,
             'sec': str(sec),
             'user': users.get_current_user(),
+            'admin': users.is_current_user_admin(),
             'url': url,
             'url_linktext': url_linktext,
             'page_header': template.render('header.html', {
@@ -230,6 +254,26 @@ class BuyBooks(webapp.RequestHandler):
 
         self.redirect('/')
 
+class AdminDeleteBooks(webapp.RequestHandler):
+    def post(self):
+        if users.is_current_user_admin():
+            books = BookSet().all().filter('uuid =', self.request.get('uuid'))
+            results = books.fetch(1)
+            book = results[0]
+
+            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
+            message.subject = "Vos objets à vendre, Secondaire %d" % book.grade
+            message.to = book.owner.email()
+            message.reply_to = "nf.roger@collegestjoseph.ca"
+            message.body = gDeleteMessage % book.description.encode('utf-8')
+            logging.info("message body: " + message.body)
+            message.send()
+            logging.info("About to delete book id: " + book.uuid)
+            for result in results:
+              result.delete()
+
+        self.redirect('/recherche')
+
 class ContactOwner(webapp.RequestHandler):
     def post(self):
         uuid = self.request.get('uuid')
@@ -301,6 +345,7 @@ application = webapp.WSGIApplication(
                                       ('/erasebook', EraseBook),
                                       ('/deletebuyer', DeleteBuyer),
                                       ('/buybooks', BuyBooks),
+                                      ('/deletebooks', AdminDeleteBooks),
                                       ('/contactowner', ContactOwner),
                                       ('/newbook', NewBook)],
                                      debug=gDebug)
