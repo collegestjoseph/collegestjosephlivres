@@ -36,6 +36,8 @@ La direction du Collège demande que ce site ne soit utilisé que pour les livre
 
 Par conséquent, nous avons retiré votre annonce.
 
+Si vous croyez qu'une erreur a été commise, veuillez contacter l'administration du site à l'adresse <livresstjoseph@gmail.com>
+
 Si vous avez des questions, veuillez contacter Mme Roger à l'adresse <nf.roger@collegestjoseph.ca>
 
 Bien à vous,
