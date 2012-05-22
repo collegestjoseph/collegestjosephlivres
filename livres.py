@@ -26,7 +26,7 @@ Bien à vous,
 
 ---
 
-Envoyé par http://livres-stjoseph.appspot.com/
+Envoyé par http://collegestjosephlivres.appspot.com/
 
 """
 gDeleteMessage = """
@@ -51,7 +51,7 @@ Annonce retirée
 
 ---
 
-Envoyé par http://livres-stjoseph.appspot.com/
+Envoyé par http://collegestjosephlivres.appspot.com/
 
 """
 
