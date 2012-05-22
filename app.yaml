@@ -1,4 +1,4 @@
-application: livres-stjoseph
+application: collegestjosephlivres
 version: 1
 runtime: python
 api_version: 1
