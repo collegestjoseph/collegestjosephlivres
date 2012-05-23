@@ -36,7 +36,7 @@ La direction du Collège demande que ce site ne soit utilisé que pour les livre
 
 Par conséquent, nous avons retiré votre annonce.
 
-Si vous croyez qu'une erreur a été commise, veuillez contacter l'administration du site à l'adresse <livresstjoseph@gmail.com>
+Si vous croyez qu'une erreur a été commise, veuillez contacter l'administration du site à l'adresse <seb.becha@gmail.com>
 
 Si vous avez des questions, veuillez contacter Mme Roger à l'adresse <nf.roger@collegestjoseph.ca>
 
@@ -245,7 +245,7 @@ class BuyBooks(webapp.RequestHandler):
             book.buyer = users.get_current_user().email()
             book.put()
 
-            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
+            message = mail.EmailMessage(sender="Livres St-Joseph <seb.becha@gmail.com>")
             message.subject = "Vente de livres St-Joseph, Secondaire %d" % book.grade
             message.to = book.owner.email()
             message.reply_to = book.buyer
@@ -263,7 +263,7 @@ class AdminDeleteBooks(webapp.RequestHandler):
             results = books.fetch(1)
             book = results[0]
 
-            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
+            message = mail.EmailMessage(sender="Livres St-Joseph <seb.becha@gmail.com>")
             message.subject = "Vos objets à vendre, Secondaire %d" % book.grade
             message.to = book.owner.email()
             message.reply_to = "nf.roger@collegestjoseph.ca"
