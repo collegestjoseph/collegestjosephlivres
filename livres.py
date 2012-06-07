@@ -65,6 +65,16 @@ class BookSet(db.Model):
     date = db.DateTimeProperty(auto_now_add=True)
     uuid = db.StringProperty()
 
+class DeletedBookSet(db.Model):
+    owner = db.UserProperty()
+    buyer = db.StringProperty()
+    grade = db.IntegerProperty()
+    price = db.IntegerProperty()
+    dateCreated = db.DateTimeProperty()
+    dateDeleted = db.DateTimeProperty(auto_now_add=True)
+    uuid = db.StringProperty()
+
+
 class SearchPage(webapp.RequestHandler):
     def get(self):
         books_query = BookSet.all().order('-date')
@@ -220,6 +230,16 @@ class EraseBook(webapp.RequestHandler):
             books = BookSet().all().filter('uuid =', self.request.get('uuid'))
             results = books.fetch(1)
             for result in results:
+              deletedBook = DeletedBookSet()
+
+              deletedBook.owner = result.owner
+              deletedBook.buyer = result.buyer
+              deletedBook.price = result.price
+              deletedBook.grade = result.grade
+              deletedBook.dateCreated = result.date
+              deletedBook.uuid = result.uuid
+              deletedBook.put()
+
               result.delete()
 
             self.redirect('/vendre')
