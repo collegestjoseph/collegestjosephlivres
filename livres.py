@@ -296,6 +296,25 @@ class AdminDeleteBooks(webapp.RequestHandler):
 
         self.redirect('/recherche')
 
+class AdminStats(webapp.RequestHandler):
+  def get(self):
+    if users.is_current_user_admin():
+      path = os.path.join(os.path.dirname(__file__), 'stats.phtml')
+
+      template_values = {
+          'page_header': template.render('header.html', {
+                  'user': users.get_current_user(),
+                  'admin': users.is_current_user_admin(),
+                  'url': users.create_logout_url(self.request.uri),
+                  'url_linktext': 'D&eacute;connexion',
+              }),
+          'page_footer': template.render('footer.html', {}),
+          }
+
+      self.response.out.write(template.render(path, template_values))
+    else:
+      self.redirect('/')
+
 class ContactOwner(webapp.RequestHandler):
     def post(self):
         uuid = self.request.get('uuid')
@@ -368,6 +387,7 @@ application = webapp.WSGIApplication(
                                       ('/deletebuyer', DeleteBuyer),
                                       ('/buybooks', BuyBooks),
                                       ('/deletebooks', AdminDeleteBooks),
+                                      ('/stats', AdminStats),
                                       ('/contactowner', ContactOwner),
                                       ('/newbook', NewBook)],
                                      debug=gDebug)

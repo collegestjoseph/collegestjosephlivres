@@ -15,6 +15,11 @@
       <td width="10%" align="center">
         <a href="/listes"><img src="/images/paperclip.png" alt="Listes Officielles"></a>
       </td>
+      {% if admin %}
+      <td width="10%" align="center">
+        <a href="/stats"><img src="/images/stats.png" alt="Statistiques"></a>
+      </td>
+      {% endif %}
       <td align="center">
       </td>
       <td width="10%" align="center">
@@ -34,6 +39,11 @@
       <td width="10%" align="center" valign="top">
         <a href="/listes">Listes Officielles</a>
       </td>
+      {% if admin %}
+      <td width="10%" align="center" valign="top">
+        <a href="/stats">Statistiques</a>
+      </td>
+      {% endif %}
       <td align="center">
       </td>
       <td width="10%" align="center" valign="top">
