@@ -4,12 +4,67 @@
     <title>
       Statistiques | Livres St-Joseph
     </title>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Jour', 'Annonces', 'Ventes'],
+          ['0',  05,   01],
+          ['1',  20,   10],
+          ['2',  50,   15],
+          ['3',  10,   45]
+        ]);
+
+        var options = {
+          title: 'Ventes de livres (expérimental)'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
   </head>
   <body>
   	{{ page_header }}
     <h3>
       Statistiques
     </h3>
+
+    <table>
+      <tr>
+        <td>
+        </td>
+        <td align="center">
+          En vente
+        </td>
+        <td align="center">
+          Vendus
+        </td>
+        <td align="center">
+          Effac&eacute;s
+        </td>
+      </tr>
+      <tr>
+        <td align="left">
+          Nombre de livres
+        </td>
+        <td align="center">
+          {{ bookstats.forsale }}
+        </td>
+        <td align="center">
+          {{ bookstats.sold }}
+        </td>
+        <td align="center">
+          {{ bookstats.deleted }}
+        </td>
+      </tr>
+    </table>
+
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 		{{ page_footer }}
   </body>

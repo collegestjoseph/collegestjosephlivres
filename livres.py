@@ -301,7 +301,17 @@ class AdminStats(webapp.RequestHandler):
     if users.is_current_user_admin():
       path = os.path.join(os.path.dirname(__file__), 'stats.phtml')
 
+      forsale = BookSet().all().filter('buyer =', None).count()
+      sold = BookSet().all().filter('buyer !=', None).count()
+      soldAndDeleted = DeletedBookSet().all().filter('buyer !=', None).count()
+      deleted = DeletedBookSet().all().filter('buyer =', None).count()
+
       template_values = {
+          'bookstats': {
+                  'forsale': forsale,
+                  'sold': sold + soldAndDeleted,
+                  'deleted': deleted,
+              },
           'page_header': template.render('header.html', {
                   'user': users.get_current_user(),
                   'admin': users.is_current_user_admin(),
