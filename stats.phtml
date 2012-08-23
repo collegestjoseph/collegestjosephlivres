@@ -53,19 +53,31 @@
           Nombre de livres
         </td>
         <td align="center">
-          {{ bookstats.forsale }}
+          {{ bookstats.forsale_count }}
         </td>
         <td align="center">
-          {{ bookstats.sold }}
+          {{ bookstats.sold_count }}
         </td>
         <td align="center">
-          {{ bookstats.deleted }}
+          {{ bookstats.deleted_count }}
         </td>
       </tr>
     </table>
+    <p>
+    <h3>Statistiques brutes</h3>
+    <div>
+        Grade,Prix,Date<br>
+        {% for book in bookstats.sold %}
+        {{ book.grade|escape }},{{ book.price|escape }},{{ book.date|date:"Y-m-d" }}<br>
+        {% endfor %}
+        {% for book in bookstats.sold_deleted %}
+        {{ book.grade|escape }},{{ book.price|escape }},{{ book.dateCreated|date:"Y-m-d" }}<br>
+        {% endfor %}
+    </div>
 
+    <!--
     <div id="chart_div" style="width: 900px; height: 500px;"></div>
-
+    --<
 		{{ page_footer }}
   </body>
 </html>
