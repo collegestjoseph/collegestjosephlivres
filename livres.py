@@ -32,21 +32,23 @@ Envoyé par http://collegestjosephlivres.appspot.com/
 gDeleteMessage = """
 Bonjour,
 
-La direction du Collège demande que ce site ne soit utilisé que pour les livres, et non pour les vêtements et autres accessoires.
+La direction du Collège a dû procéder à un entretien du site web, et cela a requis d'effacer toutes les anciennes annonces.
 
-Par conséquent, nous avons retiré votre annonce.
+Votre annonce a donc été effacée. Elle est reproduite ci-dessous.
 
-Si vous croyez qu'une erreur a été commise, veuillez contacter l'administration du site à l'adresse <seb.becha@gmail.com>
+Si vous désirez toujours vendre ces livres, vous n'avez qu'à copier-coller votre annonce (ci-dessous) en quelques instants.
 
-Si vous avez des questions, veuillez contacter Mme Roger à l'adresse <nf.roger@collegestjoseph.ca>
+Nous sommes désolés de ce contretemps, et vous souhaitons une agréable vente de livres.
+
+Si vous avez des questions, veuillez nous contacter à l'adresse <livresstjoseph@gmail.com>
 
 Bien à vous,
 Livres St-Joseph
 
 ---
-===============
-Annonce retirée
-===============
+=============
+Votre Annonce
+=============
 %s
 
 ---
@@ -265,7 +267,7 @@ class BuyBooks(webapp.RequestHandler):
             book.buyer = users.get_current_user().email()
             book.put()
 
-            message = mail.EmailMessage(sender="Livres St-Joseph <seb.becha@gmail.com>")
+            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
             message.subject = "Vente de livres St-Joseph, Secondaire %d" % book.grade
             message.to = book.owner.email()
             message.reply_to = book.buyer
@@ -283,10 +285,10 @@ class AdminDeleteBooks(webapp.RequestHandler):
             results = books.fetch(1)
             book = results[0]
 
-            message = mail.EmailMessage(sender="Livres St-Joseph <seb.becha@gmail.com>")
+            message = mail.EmailMessage(sender="Livres St-Joseph <livresstjoseph@gmail.com>")
             message.subject = "Vos objets à vendre, Secondaire %d" % book.grade
             message.to = book.owner.email()
-            message.reply_to = "nf.roger@collegestjoseph.ca"
+            message.reply_to = "livresstjoseph@gmail.com"
             message.body = gDeleteMessage % book.description.encode('utf-8')
             logging.info("message body: " + message.body)
             message.send()
