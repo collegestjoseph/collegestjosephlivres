@@ -58,6 +58,7 @@
       <ol>
       {% for book in books %}
         <li>
+            Date: {{ book.date|date:"Y-m-d H:i" }} <br>
             Secondaire: {{ book.grade|escape }} <br>
             Prix: {{ book.price|escape }} $<br>
             {% if book.can_separate %}
