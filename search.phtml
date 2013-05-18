@@ -51,6 +51,15 @@
           <a href="recherche?sec=5">Secondaire V</a>
         {% endifequal %}
       </li>
+      {% if admin %}
+      <li>
+        {% ifequal sec '0' %}
+          <a class="active" href="recherche?">Tous</a>
+        {% else %}
+          <a href="recherche?">Tous</a>
+        {% endifequal %}
+      </li>
+      {% endif %}
     </ul>
     <div id="content">
     {% if books %}
