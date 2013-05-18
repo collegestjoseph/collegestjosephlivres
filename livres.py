@@ -4,10 +4,9 @@ from google.appengine.ext.webapp import template
 import cgi
 import uuid
 import logging
+import webapp2
 
 from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from google.appengine.api import mail
 
@@ -77,7 +76,7 @@ class DeletedBookSet(db.Model):
     uuid = db.StringProperty()
 
 
-class SearchPage(webapp.RequestHandler):
+class SearchPage(webapp2.RequestHandler):
     def get(self):
         books_query = BookSet.all().order('-date')
         books = books_query.filter('buyer =', None)
@@ -128,7 +127,7 @@ class SearchPage(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
-class MyBooksPage(webapp.RequestHandler):
+class MyBooksPage(webapp2.RequestHandler):
     def get(self):
         books_query = BookSet.all().order('-date')
         books = None
@@ -168,7 +167,7 @@ class MyBooksPage(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
-class ListsPage(webapp.RequestHandler):
+class ListsPage(webapp2.RequestHandler):
     def get(self):
 
         path = os.path.join(os.path.dirname(__file__), 'lists.phtml')
@@ -197,7 +196,7 @@ class ListsPage(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
-class MainPage(webapp.RequestHandler):
+class MainPage(webapp2.RequestHandler):
     def get(self):
 
         path = os.path.join(os.path.dirname(__file__), 'index.phtml')
@@ -226,7 +225,7 @@ class MainPage(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
-class EraseBook(webapp.RequestHandler):
+class EraseBook(webapp2.RequestHandler):
     def post(self):
         if users.get_current_user():
             books = BookSet().all().filter('uuid =', self.request.get('uuid'))
@@ -246,7 +245,7 @@ class EraseBook(webapp.RequestHandler):
 
             self.redirect('/vendre')
 
-class DeleteBuyer(webapp.RequestHandler):
+class DeleteBuyer(webapp2.RequestHandler):
     def post(self):
         if users.get_current_user():
             books = BookSet().all().filter('uuid =', self.request.get('uuid'))
@@ -257,7 +256,7 @@ class DeleteBuyer(webapp.RequestHandler):
 
             self.redirect('/vendre')
 
-class BuyBooks(webapp.RequestHandler):
+class BuyBooks(webapp2.RequestHandler):
     def post(self):
         if users.get_current_user():
             books = BookSet().all().filter('uuid =', self.request.get('uuid'))
@@ -278,7 +277,7 @@ class BuyBooks(webapp.RequestHandler):
 
         self.redirect('/')
 
-class AdminDeleteBooks(webapp.RequestHandler):
+class AdminDeleteBooks(webapp2.RequestHandler):
     def post(self):
         if users.is_current_user_admin():
             books = BookSet().all().filter('uuid =', self.request.get('uuid'))
@@ -298,7 +297,7 @@ class AdminDeleteBooks(webapp.RequestHandler):
 
         self.redirect('/recherche')
 
-class AdminStats(webapp.RequestHandler):
+class AdminStats(webapp2.RequestHandler):
   def get(self):
     if users.is_current_user_admin():
       path = os.path.join(os.path.dirname(__file__), 'stats.phtml')
@@ -329,7 +328,7 @@ class AdminStats(webapp.RequestHandler):
     else:
       self.redirect('/')
 
-class ContactOwner(webapp.RequestHandler):
+class ContactOwner(webapp2.RequestHandler):
     def post(self):
         uuid = self.request.get('uuid')
         default_message = gDefaultMessage
@@ -367,7 +366,7 @@ class ContactOwner(webapp.RequestHandler):
 
         self.response.out.write(template.render(path, template_values))
 
-class NewBook(webapp.RequestHandler):
+class NewBook(webapp2.RequestHandler):
     def post(self):
         if users.get_current_user():
             books = BookSet()
@@ -392,22 +391,16 @@ class NewBook(webapp.RequestHandler):
             books.put()
             self.redirect('/vendre')
 
-application = webapp.WSGIApplication(
-                                     [('/', MainPage),
-                                      ('/recherche', SearchPage),
-                                      ('/listes', ListsPage),
-                                      ('/vendre', MyBooksPage),
-                                      ('/erasebook', EraseBook),
-                                      ('/deletebuyer', DeleteBuyer),
-                                      ('/buybooks', BuyBooks),
-                                      ('/deletebooks', AdminDeleteBooks),
-                                      ('/stats', AdminStats),
-                                      ('/contactowner', ContactOwner),
-                                      ('/newbook', NewBook)],
-                                     debug=gDebug)
-
-def main():
-    run_wsgi_app(application)
-
-if __name__ == "__main__":
-    main()
+app = webapp2.WSGIApplication(
+                                 [('/', MainPage),
+                                  ('/recherche', SearchPage),
+                                  ('/listes', ListsPage),
+                                  ('/vendre', MyBooksPage),
+                                  ('/erasebook', EraseBook),
+                                  ('/deletebuyer', DeleteBuyer),
+                                  ('/buybooks', BuyBooks),
+                                  ('/deletebooks', AdminDeleteBooks),
+                                  ('/stats', AdminStats),
+                                  ('/contactowner', ContactOwner),
+                                  ('/newbook', NewBook)],
+                                 debug=gDebug)
