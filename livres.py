@@ -102,7 +102,7 @@ class SearchPage(webapp2.RequestHandler):
             except:
               books = None
             url = users.create_logout_url(self.request.uri)
-            url_linktext = 'D&eacute;connexion'
+            url_linktext = 'Déconnexion'
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Connexion'
@@ -143,7 +143,7 @@ class MyBooksPage(webapp2.RequestHandler):
             except:
               books = None
             url = users.create_logout_url(self.request.uri)
-            url_linktext = 'D&eacute;connexion'
+            url_linktext = 'Déconnexion'
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Connexion'
@@ -174,7 +174,7 @@ class ListsPage(webapp2.RequestHandler):
 
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
-            url_linktext = 'D&eacute;connexion'
+            url_linktext = 'Déconnexion'
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Connexion'
@@ -203,7 +203,7 @@ class MainPage(webapp2.RequestHandler):
 
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
-            url_linktext = 'D&eacute;connexion'
+            url_linktext = 'Déconnexion'
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Connexion'
@@ -319,7 +319,7 @@ class AdminStats(webapp2.RequestHandler):
                   'user': users.get_current_user(),
                   'admin': users.is_current_user_admin(),
                   'url': users.create_logout_url(self.request.uri),
-                  'url_linktext': 'D&eacute;connexion',
+                  'url_linktext': 'Déconnexion',
               }),
           'page_footer': template.render('footer.html', {}),
           }
@@ -341,7 +341,7 @@ class ContactOwner(webapp2.RequestHandler):
             path = os.path.join(os.path.dirname(__file__), 'contact.phtml')
 
             url = users.create_logout_url(self.request.uri)
-            url_linktext = 'D&eacute;connexion'
+            url_linktext = 'Déconnexion'
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Connexion'
